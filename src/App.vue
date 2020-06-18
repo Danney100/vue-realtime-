@@ -13,6 +13,7 @@
 import MyEvents from './components/MyEvents.vue'
 import MyRecord from './components/MyRecord.vue'
 import MyRpc from './components/MyRPC.vue'
+import deepstream from 'deepstream.io-client-js'
 
 export default {
   name: 'App',
@@ -20,6 +21,20 @@ export default {
     MyEvents,
     MyRecord,
     MyRpc
+  },
+  data() {
+    return {
+      connectionState: "INITIAL"
+    }
+  },
+  created() {
+    this.ds = deepstream(
+      "wss://154.deepstreamhub.com?apiKey=97a397bd-ccd2-498f-a520-aacc9f67373c"
+    )
+      .login()
+      .on("connectionStateChanged", connectionState => {
+        this.$data.connectionState = connectionState;
+      });
   }
 }
 </script>
