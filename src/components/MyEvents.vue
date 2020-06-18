@@ -9,6 +9,12 @@
             >
               Send test-event with
             </button>
+            <input 
+              type="text"
+              class="half"
+              id="event-data"
+              v-model="value"
+            />
         </div>
         <div class="half">
             <h2>Subscribe</h2>
